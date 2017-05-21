@@ -74,6 +74,7 @@ def run():
             langs[lang]["color"] = langs_yml[lang]["color"] if "color" in langs_yml[lang] else None
             langs[lang]["url"] = "https://github.com/trending?l=" + (langs_yml[lang]["search_term"] if "search_term" in langs_yml[lang] else lang)
             langs[lang]["url"] = langs[lang]["url"].replace(' ','-')
+            langs[lang]["name"] = lang
     print("Writing a new JSON file ...")
     write_json(langs)
     print("Updating the README ...")
