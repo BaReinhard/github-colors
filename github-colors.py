@@ -72,8 +72,6 @@ def run():
             print("   Parsing the color for '%s' ..." % (lang))
             langs[lang] = OrderedDict()
             langs[lang]["color"] = langs_yml[lang]["color"] if "color" in langs_yml[lang] else None
-            langs[lang]["url"] = "https://github.com/trending?l=" + (langs_yml[lang]["search_term"] if "search_term" in langs_yml[lang] else lang)
-            langs[lang]["url"] = langs[lang]["url"].replace(' ','-')
             langs[lang]["name"] = lang
     print("Writing a new JSON file ...")
     write_json(langs)
@@ -99,12 +97,12 @@ def write_readme(text, filename='README.md'):
 
         colorless = OrderedDict()
 
-        for lang in text:
-            if text[lang]["color"] is None:
-                colorless[lang] = text[lang]["url"]
-            else:
+#        for lang in text:
+ #           if text[lang]["color"] is None:
+#                colorless[lang] = text[lang]["url"]
+#            else:
                 # text[lang]["color"][1:] : remove first char ("#") from the color ("#fefefe")
-                f.write("[![](http://www.placehold.it/150/%s/ffffff&text=%s)](%s)" % (text[lang]["color"][1:], quote(lang), text[lang]["url"]))
+#                f.write("[![](http://www.placehold.it/150/%s/ffffff&text=%s)](%s)" % (text[lang]["color"][1:], quote(lang), text[lang]["url"]))
 
         if colorless != {}:
             f.write("\n\nA few other languages don't have their own color on GitHub :(\n")
